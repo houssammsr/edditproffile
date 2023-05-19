@@ -2,8 +2,10 @@ import { useState, useCallback } from "react";
 import ChangeNumberPopUp from "./ChangeNumberPopUp";
 import PortalPopup from "./PortalPopup";
 import styles from "./ContactNumber.module.css";
-const ContactNumber = ({ contactNumber }) => {
+
+const ContactNumber = ({ contactNumber, onChange }) => {
   const [isChangeNumberPopUpOpen, setChangeNumberPopUpOpen] = useState(false);
+  const [newContactNumber, setNewContactNumber] = useState("");
 
   const openChangeNumberPopUp = useCallback(() => {
     setChangeNumberPopUpOpen(true);
@@ -12,6 +14,17 @@ const ContactNumber = ({ contactNumber }) => {
   const closeChangeNumberPopUp = useCallback(() => {
     setChangeNumberPopUpOpen(false);
   }, []);
+
+  const handleNewContactNumberChange = useCallback((e) => {
+    setNewContactNumber(e.target.value);
+  }, []);
+
+  const handleSaveButtonClick = useCallback(() => {
+    if (newContactNumber) {
+      onChange(newContactNumber);
+      closeChangeNumberPopUp();
+    }
+  }, [newContactNumber, onChange, closeChangeNumberPopUp]);
 
   return (
     <>
@@ -31,7 +44,11 @@ const ContactNumber = ({ contactNumber }) => {
           placement="Centered"
           onOutsideClick={closeChangeNumberPopUp}
         >
-          <ChangeNumberPopUp onClose={closeChangeNumberPopUp} />
+          <ChangeNumberPopUp
+            newContactNumber={newContactNumber}
+            onNewContactNumberChange={handleNewContactNumberChange}
+            onSaveButtonClick={handleSaveButtonClick}
+          />
         </PortalPopup>
       )}
     </>

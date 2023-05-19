@@ -4,10 +4,12 @@ import styles from "./ResetPasswordPopUp.module.css";
 const ResetPasswordPopUp = ({ onClose }) => {
   const [newPassword, setNewPassword] = useState("");
   const [confirmNewPassword, setConfirmNewPassword] = useState("");
-  
+
   const onSaveButtonClick = useCallback(() => {
-    //TODO: reset password button
-  }, []);
+    // TODO: reset password button
+    // You can access the newPassword and confirmNewPassword states here and perform the password reset operation
+    console.log(newPassword, confirmNewPassword);
+  }, [newPassword, confirmNewPassword]);
 
   const passwordsMatch = newPassword === confirmNewPassword;
   const showPasswordMatchNote = confirmNewPassword.length > 0;

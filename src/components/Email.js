@@ -3,7 +3,7 @@ const Email = ({ email }) => {
   return (
     <div className={styles.email}>
       <div className={styles.email1}>Email</div>
-      <div className={styles.hmansouresiSbadz}>{email}</div>
+      <div className={styles.EmailValue}>{email}</div>
     </div>
   );
 };

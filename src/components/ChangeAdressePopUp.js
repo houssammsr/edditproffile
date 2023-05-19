@@ -1,10 +1,7 @@
 import { useCallback } from "react";
 import styles from "./ChangeAdressePopUp.module.css";
-const ChangeAdressePopUp = ({ onClose }) => {
-  const onSaveButtonClick = useCallback(() => {
-    //TODO: save new adresse button
-  }, []);
 
+const ChangeAdressePopUp = ({ newAdresse, onNewAdresseChange, onSaveButtonClick }) => {
   return (
     <div className={styles.changeAdressePopUp}>
       <div className={styles.copyParent}>
@@ -12,7 +9,9 @@ const ChangeAdressePopUp = ({ onClose }) => {
           className={styles.copy}
           type="text"
           placeholder="New adresse"
-          id="NewContactNumber"
+          id="NewAdresse"
+          value={newAdresse}
+          onChange={onNewAdresseChange}
         />
         <button className={styles.saveButton} onClick={onSaveButtonClick}>
           <div className={styles.save}>Save</div>
